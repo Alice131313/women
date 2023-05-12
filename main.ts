@@ -8,27 +8,27 @@ radio.onReceivedNumber(function (receivedNumber) {
 input.onButtonPressed(Button.A, function () {
     radio.sendString("no thx")
     basic.showIcon(IconNames.Asleep)
+    basic.pause(100)
+})
+input.onButtonPressed(Button.AB, function () {
     radio.setGroup(1)
-    radio.setTransmitPower(1)
-    radio.sendNumber(1)
+    radio.setTransmitPower(5)
+    for (let index = 0; index < 100; index++) {
+        radio.sendNumber(1)
+    }
 })
 radio.onReceivedString(function (receivedString) {
     if (receivedString == "no thx") {
         basic.showIcon(IconNames.Asleep)
-        basic.pause(2000)
     } else if (receivedString == "safe") {
         basic.showIcon(IconNames.Happy)
     } else {
         basic.showIcon(IconNames.No)
-        basic.pause(2000)
     }
 })
 input.onButtonPressed(Button.B, function () {
     radio.sendString("HELP")
     basic.showIcon(IconNames.No)
-    radio.setGroup(1)
-    radio.setTransmitPower(1)
-    radio.sendNumber(1)
 })
 input.onLogoEvent(TouchButtonEvent.Pressed, function () {
     radio.sendString("safe")
